@@ -20,7 +20,7 @@ const BoardIdPage = ({ params }: BoardIdPageProps) => {
 
 
   return (
-    <LiveblocksProvider publicApiKey={publicApiKey} >
+    <LiveblocksProvider authEndpoint='/api/liveblocks-auth' >
       <Room roomId={query.boardId as string} fallback={<Loading />}>
         <Canvas boardId={query.boardId as string} />
       </Room>
