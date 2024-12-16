@@ -2,8 +2,7 @@
 
 import React, { use } from 'react'
 import Canvas from "./_components/canvas"
-import Room from "@/components/room";
-import { LiveblocksProvider } from "@liveblocks/react";
+import { ClientSideSuspense, LiveblocksProvider, RoomProvider, useStatus } from "@liveblocks/react";
 import Loading from "./_components/loading";
 
 
@@ -15,17 +14,35 @@ interface BoardIdPageProps {
 }
 
 const BoardIdPage = ({ params }: BoardIdPageProps) => {
-
-  const query = use(params)
+  const { boardId } = use(params);
 
 
   return (
-    <LiveblocksProvider authEndpoint='/api/liveblocks-auth' >
-      <Room roomId={query.boardId as string} fallback={<Loading />}>
-        <Canvas boardId={query.boardId as string} />
-      </Room>
+    <LiveblocksProvider
+      authEndpoint='/api/liveblocks-auth'
+    >
+      <RoomProvider id={boardId as string} initialPresence={{}}>
+        <ClientSideSuspense fallback={<Loading />}>
+          <RoomWrapper boardId={boardId as string} />
+        </ClientSideSuspense>
+      </RoomProvider>
     </LiveblocksProvider>
   )
 }
 
 export default BoardIdPage
+
+
+interface RoomWrapperProps {
+  boardId: string;
+}
+
+const RoomWrapper = ({ boardId }: RoomWrapperProps) => {
+  const status = useStatus();
+
+  if (status === 'connecting') {
+    return <Loading />;
+  }
+
+  return <Canvas boardId={boardId} />;
+};

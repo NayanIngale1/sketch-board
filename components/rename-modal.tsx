@@ -22,10 +22,11 @@ import { Input } from "./ui/input";
 interface RenameModalProps {
   id: string;
   boardTitle: string;
+  fromBoard?: boolean;
 }
 
 
-const RenameModal = ({ id, boardTitle }: RenameModalProps) => {
+const RenameModal = ({ id, boardTitle, fromBoard = false }: RenameModalProps) => {
   const { mutate, pending } = useApiMutation(api.board.update);
   const [title, setTitle] = useState(boardTitle);
   const onSubmit = () => {
@@ -40,11 +41,11 @@ const RenameModal = ({ id, boardTitle }: RenameModalProps) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          variant="ghost"
-          className="p-3 cursor-pointer text-sm w-full justify-start font-normal"
+          variant={fromBoard ? "board" : "ghost"}
+          className={fromBoard ? "text-base font-normal px-2" : "p-3 cursor-pointer text-sm w-full justify-start font-normal"}
         >
-          <Pencil className="h-4 w-4 mr-2" />
-          Rename
+          {!fromBoard && <Pencil className="h-4 w-4 mr-2" />}
+          {fromBoard ? boardTitle : "Rename" }
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent >

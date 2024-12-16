@@ -50,9 +50,9 @@ declare global {
 }
 
 export const client = createClient({
-  // authEndpoint: "/api/liveblocks-auth",
-  publicApiKey:
-    "pk_dev_AV8mq8Mq639n96rL0CKTlv7q1QdmkSk5nhCSIFvCCJzt69LgiUp4K1Tz1IxwHHZd",
+  authEndpoint: "/api/liveblocks-auth",
+  // publicApiKey:
+  //   "pk_dev_AV8mq8Mq639n96rL0CKTlv7q1QdmkSk5nhCSIFvCCJzt69LgiUp4K1Tz1IxwHHZd",
 
   // Other options
   // ...

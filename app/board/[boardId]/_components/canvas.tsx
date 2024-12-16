@@ -14,14 +14,13 @@ interface CanvasProps {
 
 const Canvas = ({ boardId }: CanvasProps) => {
 
-
   const info = useSelf((me) => me.info)
   console.log(info, '<---info')
   return (
     <div
       className="w-full h-full relative bg-neutral-100 touch-none"
     >
-      <Info />
+      <Info boardId={boardId} />
       <Participants />
       <Toolbar />
     </div>
