@@ -20,8 +20,9 @@ const BoardIdPage = ({ params }: BoardIdPageProps) => {
   return (
     <LiveblocksProvider
       authEndpoint='/api/liveblocks-auth'
+      throttle={16}
     >
-      <RoomProvider id={boardId as string} initialPresence={{}}>
+      <RoomProvider id={boardId as string} initialPresence={{ cursor: null }}>
         <ClientSideSuspense fallback={<Loading />}>
           <RoomWrapper boardId={boardId as string} />
         </ClientSideSuspense>
