@@ -113,16 +113,16 @@ const Toolbar = ({
         className="bg-white rounded-md p-1.5 flex flex-col items-center shadow-md"
       >
         <ToolButton
-          label="Redo"
-          icon={Redo2}
-          onClick={redo}
-          isDisabled={!canRedo}
-        />
-        <ToolButton
           label="Undo"
           icon={Undo2}
           onClick={undo}
           isDisabled={!canUndo}
+        />
+        <ToolButton
+          label="Redo"
+          icon={Redo2}
+          onClick={redo}
+          isDisabled={!canRedo}
         />
       </div>
     </div>

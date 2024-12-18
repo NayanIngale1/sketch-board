@@ -2,12 +2,19 @@
 
 import React, { use } from 'react'
 import Canvas from "./_components/canvas"
-import { ClientSideSuspense, LiveblocksProvider, RoomProvider, useStatus } from "@liveblocks/react";
+import {
+  ClientSideSuspense,
+  LiveblocksProvider,
+  RoomProvider,
+  useStatus
+} from "@liveblocks/react";
 import Loading from "./_components/loading";
+import { LiveList, LiveMap, LiveObject } from "@liveblocks/client";
+import { Layer } from "@/types/canvas";
 
 
 
-const publicApiKey = "pk_dev_AV8mq8Mq639n96rL0CKTlv7q1QdmkSk5nhCSIFvCCJzt69LgiUp4K1Tz1IxwHHZd";
+// const publicApiKey = "pk_dev_AV8mq8Mq639n96rL0CKTlv7q1QdmkSk5nhCSIFvCCJzt69LgiUp4K1Tz1IxwHHZd";
 
 interface BoardIdPageProps {
   params: Promise<{ [key: string]: string | string[] | undefined }>
@@ -22,7 +29,13 @@ const BoardIdPage = ({ params }: BoardIdPageProps) => {
       authEndpoint='/api/liveblocks-auth'
       throttle={16}
     >
-      <RoomProvider id={boardId as string} initialPresence={{ cursor: null }}>
+      <RoomProvider
+        id={boardId as string}
+        initialPresence={{ cursor: null, selection: [] }}
+        initialStorage={{
+          layers: new LiveMap<string, LiveObject<Layer>>(),
+          layerIds: new LiveList<string>([]),
+        }}>
         <ClientSideSuspense fallback={<Loading />}>
           <RoomWrapper boardId={boardId as string} />
         </ClientSideSuspense>

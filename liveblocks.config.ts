@@ -1,7 +1,13 @@
 // Define Liveblocks types for your application
 // https://liveblocks.io/docs/api-reference/liveblocks-react#Typing-your-data
 
-import { createClient } from "@liveblocks/client";
+import {
+  createClient,
+  LiveMap,
+  LiveObject,
+  LiveList,
+} from "@liveblocks/client";
+import { Layer } from "./types/canvas";
 
 declare global {
   interface Liveblocks {
@@ -9,10 +15,13 @@ declare global {
     Presence: {
       // Example, real-time cursor coordinates
       cursor: { x: number; y: number } | null;
+      selection: string[];
     };
 
     // The Storage tree for the room, for useMutation, useStorage, etc.
     Storage: {
+      layers: LiveMap<string, LiveObject<Layer>>;
+      layerIds: LiveList<string>;
       // Example, a conflict-free list
       // animals: LiveList<string>;
     };
