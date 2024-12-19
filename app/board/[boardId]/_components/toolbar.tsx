@@ -47,7 +47,7 @@ const Toolbar = ({
             canvasState.mode === CanvasMode.Translating ||
             canvasState.mode === CanvasMode.selectionNet ||
             canvasState.mode === CanvasMode.Resizing ||
-            canvasState.mode === CanvasMode.pressing
+            canvasState.mode === CanvasMode.Pressing
           }
         />
         <ToolButton

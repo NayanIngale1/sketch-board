@@ -97,7 +97,7 @@ export type CanvasState =
       current?: Point;
     }
   | {
-      mode: CanvasMode.pressing;
+      mode: CanvasMode.Pressing;
       origin: Point;
     }
   | {
@@ -124,7 +124,7 @@ export type CanvasState =
 
 export enum CanvasMode {
   None,
-  pressing,
+  Pressing,
   selectionNet,
   Translating,
   Inserting,
