@@ -31,7 +31,7 @@ const BoardIdPage = ({ params }: BoardIdPageProps) => {
     >
       <RoomProvider
         id={boardId as string}
-        initialPresence={{ cursor: null, selection: [] }}
+        initialPresence={{ cursor: null, selection: [], pencilDraft: null, penColor: null }}
         initialStorage={{
           layers: new LiveMap<string, LiveObject<Layer>>(),
           layerIds: new LiveList<string>([]),
