@@ -430,7 +430,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
     return () => {
       document.removeEventListener("keydown", onKeyDown)
     }
-  }, [])
+  }, [deleteLayers, history])
 
 
   return (
