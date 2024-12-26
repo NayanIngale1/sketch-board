@@ -54,7 +54,7 @@ interface RoomWrapperProps {
 const RoomWrapper = ({ boardId }: RoomWrapperProps) => {
   const status = useStatus();
   const router = useRouter();
-  
+
   useEffect(() => {
     if (status === 'connecting') {
       toast.dismiss();
@@ -70,7 +70,7 @@ const RoomWrapper = ({ boardId }: RoomWrapperProps) => {
       toast.dismiss();
       toast.info("Reconnecting to the board.")
     }
-   },[status])
+  }, [status, router])
 
   if (status === 'connecting') {
     return <Loading />;

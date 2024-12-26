@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -45,7 +45,7 @@ const RenameModal = ({ id, boardTitle, fromBoard = false }: RenameModalProps) =>
           className={fromBoard ? "text-base font-normal px-2" : "p-3 cursor-pointer text-sm w-full justify-start font-normal"}
         >
           {!fromBoard && <Pencil className="h-4 w-4 mr-2" />}
-          {fromBoard ? boardTitle : "Rename" }
+          {fromBoard ? boardTitle : "Rename"}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent >

@@ -1,6 +1,6 @@
 "use client";
 
-import { OrganizationList, useOrganizationList } from "@clerk/nextjs";
+import { useOrganizationList } from "@clerk/nextjs";
 import { Item } from "./item";
 
 

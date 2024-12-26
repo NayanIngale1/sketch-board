@@ -39,7 +39,6 @@ import { SelectionTools } from "./selection-tools"
 import { Path } from "./path"
 import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce"
 import { useDeleteLayers } from "@/hooks/use-delete-layers"
-import { useRouter } from "next/navigation"
 
 
 const MAX_LAYERS = 100;
@@ -414,9 +413,9 @@ const Canvas = ({ boardId }: CanvasProps) => {
         case "z": {
           if (e.ctrlKey || e.metaKey) {
             if (e.shiftKey) {
-              history.redo;
+              history.redo();
             } else {
-              history.undo;
+              history.undo();
             }
             break;
           }
