@@ -39,6 +39,7 @@ import { SelectionTools } from "./selection-tools"
 import { Path } from "./path"
 import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce"
 import { useDeleteLayers } from "@/hooks/use-delete-layers"
+import { useRouter } from "next/navigation"
 
 
 const MAX_LAYERS = 100;
@@ -49,8 +50,6 @@ interface CanvasProps {
 
 
 const Canvas = ({ boardId }: CanvasProps) => {
-  // const info = useSelf((me) => me.info)
-  // console.log(info, '<---info')
 
   const layerIds = useStorage((root) => root.layerIds) || [];
 

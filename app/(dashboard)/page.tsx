@@ -23,10 +23,3 @@ export default function DashboardPage({ searchParams }: DashboardPageProps) {
     </div>
   );
 }
-
-{/* <SignedIn>
-  <div>Welcome to the authenticated home page!</div>
-</SignedIn>
-<SignedOut>
-  <RedirectToSignIn />
-</SignedOut> */}

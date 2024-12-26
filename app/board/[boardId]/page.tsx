@@ -1,6 +1,6 @@
 "use client"
 
-import React, { use } from 'react'
+import React, { use, useEffect } from 'react'
 import Canvas from "./_components/canvas"
 import {
   ClientSideSuspense,
@@ -11,10 +11,10 @@ import {
 import Loading from "./_components/loading";
 import { LiveList, LiveMap, LiveObject } from "@liveblocks/client";
 import { Layer } from "@/types/canvas";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 
-
-// const publicApiKey = "pk_dev_AV8mq8Mq639n96rL0CKTlv7q1QdmkSk5nhCSIFvCCJzt69LgiUp4K1Tz1IxwHHZd";
 
 interface BoardIdPageProps {
   params: Promise<{ [key: string]: string | string[] | undefined }>
@@ -53,6 +53,24 @@ interface RoomWrapperProps {
 
 const RoomWrapper = ({ boardId }: RoomWrapperProps) => {
   const status = useStatus();
+  const router = useRouter();
+  
+  useEffect(() => {
+    if (status === 'connecting') {
+      toast.dismiss();
+      toast.loading("Connecting to the board.");
+    } else if (status === "connected") {
+      toast.dismiss();
+      toast.success("Connected to the board.");
+    } else if (status === "disconnected") {
+      toast.dismiss();
+      toast.error("You are allowed to access this board.");
+      router.back();
+    } else if (status === "reconnecting") {
+      toast.dismiss();
+      toast.info("Reconnecting to the board.")
+    }
+   },[status])
 
   if (status === 'connecting') {
     return <Loading />;
