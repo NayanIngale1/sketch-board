@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ConvexClientProvider } from "@/providers/convex-slient-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { Suspense } from "react";
+import { Loading } from "@/components/auth/loading";
 
 
 const geistSans = localFont({
@@ -31,10 +33,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ConvexClientProvider>
-          <Toaster position="top-right" />
-          {children}
-        </ConvexClientProvider>
+        <Suspense fallback={<Loading />}>
+          <ConvexClientProvider>
+            <Toaster position="top-right" />
+            {children}
+          </ConvexClientProvider>
+        </Suspense>
       </body>
     </html>
   );
